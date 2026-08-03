@@ -35,7 +35,8 @@ FROM nvcr.io/nvidia/cuda:13.0.0-devel-ubuntu24.04 AS runtime
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_NO_CACHE_DIR=1 \
-    PIP_DISABLE_PIP_VERSION_CHECK=1
+    PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    FLASHINFER_DISABLE_VERSION_CHECK=1
 
 # Python 3.12 + tools. build-essential/gcc are needed by FlashInfer's runtime
 # JIT (host-side c++ compilation of the generated .cu/.so), ffmpeg for vLLM I/O.
