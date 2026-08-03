@@ -18,8 +18,8 @@ USER root
 ARG RELEASE_TAG=v0.23.1rc1.dev904-g8e321cc4f-cu130-sm89
 
 # Asset names embed the release version; update together with RELEASE_TAG.
-ENV VLLM_WHEEL_URL="https://github.com/yhfgyyf/vllm-deepseek-v4-sm89/releases/download/${RELEASE_TAG}/vllm-0.23.1rc1.dev904%2Bg8e321cc4f.cu130-cp312-cp312-linux_x86_64.whl"
-ENV FLASHINFER_WHEEL_URL="https://github.com/yhfgyyf/vllm-deepseek-v4-sm89/releases/download/${RELEASE_TAG}/flashinfer_python-0.6.14%2Bsm89.1-py3-none-any.whl"
+ENV VLLM_WHEEL_URL="https://github.com/yhfgyyf/vllm-deepseek-v4-sm89/releases/download/${RELEASE_TAG}/vllm-0.23.1rc1.dev904+g8e321cc4f.cu130-cp312-cp312-linux_x86_64.whl"
+ENV FLASHINFER_WHEEL_URL="https://github.com/yhfgyyf/vllm-deepseek-v4-sm89/releases/download/${RELEASE_TAG}/flashinfer_python-0.6.14+sm89.1-py3-none-any.whl"
 
 RUN mkdir -p /wheels \
  && curl -fL --retry 3 -O --output-dir /wheels        "$VLLM_WHEEL_URL" \
