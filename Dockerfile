@@ -22,8 +22,8 @@ ENV VLLM_WHEEL_URL="https://github.com/yhfgyyf/vllm-deepseek-v4-sm89/releases/do
 ENV FLASHINFER_WHEEL_URL="https://github.com/yhfgyyf/vllm-deepseek-v4-sm89/releases/download/${RELEASE_TAG}/flashinfer_python-0.6.14%2Bsm89.1-py3-none-any.whl"
 
 RUN mkdir -p /wheels \
- && curl -fL --retry 3 -o /wheels/vllm.whl        "$VLLM_WHEEL_URL" \
- && curl -fL --retry 3 -o /wheels/flashinfer.whl  "$FLASHINFER_WHEEL_URL"
+ && curl -fL --retry 3 -O --output-dir /wheels        "$VLLM_WHEEL_URL" \
+ && curl -fL --retry 3 -O --output-dir /wheels  "$FLASHINFER_WHEEL_URL"
 
 # Optional integrity check (SHA-256 from the release notes)
 # RUN echo "d1a4e4ee3f64882f129a8d12e47bcd70c46992b83a16c2e6c722d85dbe87b41c  /wheels/vllm.whl"        | sha256sum -c - \
@@ -62,8 +62,8 @@ COPY --from=wheels /wheels /wheels
 # invocation. `--torch-backend=cu130` pins torch 2.11.0+cu130 & friends to the
 # PyTorch cu130 index and keeps CuTe DSL at the vLLM-validated 4.5.2 build.
 RUN uv pip install --python "$VIRTUAL_ENV/bin/python" \
-        /wheels/flashinfer.whl \
-        /wheels/vllm.whl \
+        /wheels/flashinfer*.whl \
+        /wheels/vllm*.whl \
         "flashinfer-cubin==0.6.13" \
         --torch-backend=cu130
 
