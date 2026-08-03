@@ -13,7 +13,7 @@
 # =============================================================================
 
 # ---- Stage 1: fetch the two official prebuilt release wheels -----------------
-FROM curlimages/curl:8.10.1 AS wheels
+FROM docker.io/curlimages/curl:8.10.1 AS wheels
 ARG RELEASE_TAG=v0.23.1rc1.dev904-g8e321cc4f-cu130-sm89
 
 # Asset names embed the release version; update together with RELEASE_TAG.
@@ -30,7 +30,7 @@ RUN mkdir -p /wheels \
 
 # ---- Stage 2: runtime image ------------------------------------------------
 # CUDA devel = nvcc present for FlashInfer runtime JIT (matches validated env).
-FROM nvidia/cuda:13.0.0-devel-ubuntu24.04 AS runtime
+FROM nvcr.io/nvidia/cuda:13.0.0-devel-ubuntu24.04 AS runtime
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PIP_NO_CACHE_DIR=1 \
