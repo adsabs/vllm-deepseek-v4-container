@@ -14,6 +14,7 @@
 
 # ---- Stage 1: fetch the two official prebuilt release wheels -----------------
 FROM docker.io/curlimages/curl:8.10.1 AS wheels
+USER root
 ARG RELEASE_TAG=v0.23.1rc1.dev904-g8e321cc4f-cu130-sm89
 
 # Asset names embed the release version; update together with RELEASE_TAG.
